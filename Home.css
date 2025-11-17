@@ -614,16 +614,18 @@ footer {
 .footer-section:nth-child(2) { animation-delay: 0.4s; }
 .footer-section:nth-child(3) { animation-delay: 0.6s; }
 
-.footer-section:hover{
+ .footer-section:hover{
   transform: translateY(-10px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
+
+/* Tituj dhe tekst */
 .footer-section h3 {
   font-size: 1.4rem;
   margin-bottom: 20px;
   color: #a9f1ff;
   font-weight: 600;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3s);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .footer-section p, .footer-section ul{
@@ -631,10 +633,12 @@ footer {
   line-height: 1.6;
   color: #eaf7ff;
 }
+
 .footer-section ul{
   list-style: none;
   padding: 0;
 }
+
 .footer-section ul li{
   margin: 8px 0;
 }
@@ -648,9 +652,9 @@ footer {
 .footer-section a:hover{
   color: #fff;
   text-shadow: 0 0 10px #a9f1ff;
-
 }
 
+/* Logo footer */
 .footer-logo {
   display: flex;
   flex-direction: column;
@@ -666,6 +670,7 @@ footer {
   margin-bottom: 10px;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+
 .footer-logo-img:hover{
   transform: scale(1.2) rotate(10deg);
   box-shadow: 0 0 20px #48cae4;
@@ -677,45 +682,58 @@ footer {
   gap: 15px;
   margin-top: 10px;
 }
+
 .social-icon{
-  display: inline-block;
-  width: 45px;
-  height: 45px;
-  background: #eaf7ff;
-  color: #0077b6;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 45px;
-  font-size: 1.2rem;
-  transition: all 0.4s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: #fff;   /* sfond i bardhë që duket gjithmonë */
+  color: #0077b6;    /* ngjyra fillestare e ikonës */
+  border-radius: 50%; /* bën rrumbullake */
+  font-size: 20px;
+  transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-.social-icon:hover{
-  background: #00b4d8;
-  color: #fff;
-  transform: translateY(-5px) scale(1.2) rotate(5deg);
-  box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
-}
-.footer-bottom{
-  text-align: center;
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 0.9rem;
-  opacity: 0.9;
-  color: #eaf7ff;
+  text-decoration: none;
 }
 
-/*Animations per pjesen e footer*/
+/* Hover efekt modern */
+.social-icon:hover{
+  background: #00b4d8; /* sfond i kaltër kur hover */
+  color: #fff;
+  transform: translateY(-5px) scale(1.2);
+  box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
+}
+
+/* Ngjyra brand për secilin rrjet social */
+.social-icon.facebook{ background: #1877f2; color: #fff; }
+.social-icon.instagram{ background: #d6249f; color: #fff; }
+.social-icon.twitter{ background: #1da1f2; color: #fff; }
+
+/* Footer bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  padding: 25px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+  color: #eaf7ff;
+  backdrop-filter: blur(3px);
+}
+
+
+/* Animacion per footer */
 @keyframes fadeUpFooter {
   to{
     opacity: 1;
     transform: translateY(0);
   }
-  
 }
 
-/*Responsive*/
+/* Responsive */
 @media (max-width:900px) {
   .footer-container{
     flex-direction: column;

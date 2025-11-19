@@ -82,133 +82,170 @@ nav a.active {
     box-shadow: 0 0 15px #00b4d8;
 }
 
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
+/* Wrapper me background image */
+.about-section-wrapper {
+  background: url("images/background-about.jpg") no-repeat center center/cover;
+  padding: 5rem 0; /* hapësirë rreth kutisë */
 }
 
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-.row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 karta në rresht */
-    gap: 25px;  /* distanca mes tyre */
-    padding: 20px;
-}
-
-.column {
-    flex: 0 0 300px; 
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-@media (max-width: 900px) {
-    .row {
-        grid-template-columns: repeat(2, 1fr); 
-    }
-}
-
-@media (max-width: 600px) {
-    .row {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 8px;
-}
-
+/* Kutia e bardhë sipër imazhit */
 .about-section {
-  padding: 50px;
+  background: rgba(255,255,255,0.95); /* e bardhë me pak transparencë */
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
   text-align: center;
-  background-color: #003049;
-  color: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.container {
-    padding: 0 16px;
-}
-
-.container::after, .row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.title {
-  color: grey;
-}
-
-.button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #0077b6;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-}
-
-.button:hover {
-  background-color: #555;
-}
-
-@media screen and (max-width: 650px) {
-  .column {
-    width: 100%;
-    display: block;
-  }
-}
-.footer{
-     background: linear-gradient(135deg, #0077b6,#0096c7,#00b4d8);
-  color: #fff;
-  padding: 60px 20px 20px;
+/* Titulli */
+.about-section h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
   position: relative;
-  overflow: hidden;
-  font-family: "Poppins",sans-serif;
 }
-.footer-bottom {
+
+.about-section h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2ecc71);
+  margin: 0.6rem auto 0;
+  border-radius: 2px;
+}
+
+/* Teksti */
+.about-section p {
+  font-size: 1.05rem;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 0.8rem;
+  line-height: 1.7;
+}
+
+/* Animacion i butë */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Team Section */
+.team-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #ffffff, #e6f0ff);
+}
+
+.team-title {
   text-align: center;
-  margin-top: 50px;
-  padding: 25px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-  opacity: 0.85;
-  color: #eaf7ff;
-  backdrop-filter: blur(3px);
+  font-size: 2rem;
+  color: #3498db;
+  margin-bottom: 0.5rem;
 }
 
+.team-subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+}
 
-/* Animacion per footer */
-@keyframes fadeUpFooter {
-  to{
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* Kartat e mjekëve */
+.team-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.team-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #3498db;
+}
+
+.team-card h3 {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.role {
+  font-weight: bold;
+  color: #3498db;
+  margin-bottom: 0.5rem;
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+/* Butoni Contact */
+.btn-team {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-team:hover {
+  background: #ff4081;
+  transform: scale(1.05);
+}
+
+/* Animacione */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 /* Responsive */
-@media (max-width:900px) {
-  .footer-container{
+@media (max-width: 768px) {
+  .navbar {
     flex-direction: column;
-    gap: 30px;
-    text-align: center;
+    padding: 1rem;
   }
-  .footer-section{
-    min-width: auto;
+
+  .nav-list {
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
   }
-  .social-media{
-    justify-content: center;
+
+  .about-section {
+    padding: 2rem 1rem;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }

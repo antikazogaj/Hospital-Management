@@ -1,0 +1,292 @@
+/* Reset dhe baza */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/*vendosja e fotos ne login*/
+body {
+  background: url('images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Tituj */
+h2 {
+  font-size: 30px;
+  color: #0b4fa3;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Inputet me ikona */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group i.icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #0b4fa3;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border-radius: 12px;
+  border: 1.5px solid #dcdcdc;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input::placeholder {
+  color: #999;
+}
+
+.input-group input:focus {
+  border-color: #0b4fa3;
+  box-shadow: 0 0 8px rgba(11, 79, 163, 0.4);
+}
+
+/* Opsionet checkbox - forgot */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0b4fa3;
+}
+
+.options a.forgot {
+  color: #0b4fa3;
+  text-decoration: none;
+  transition: text-decoration 0.3s;
+}
+
+.options a.forgot:hover {
+  text-decoration: underline;
+}
+
+/* Butoni Log In */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #0b4fa3, #1a73e8);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(11, 79, 163, 0.6);
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #1565c0, #4285f4);
+  transform: translateY(-3px);
+}
+
+/* Divider me tekst */
+.divider {
+  margin: 30px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(11, 79, 163, 0.3);
+}
+
+.divider::before {
+  margin-right: 12px;
+}
+
+.divider::after {
+  margin-left: 12px;
+}
+
+/* butonat social */
+.social-login {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.social-login button {
+  flex: 1;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.google {
+  background: linear-gradient(135deg, #db4437, #e57373);
+}
+
+.google:hover {
+  box-shadow: 0 6px 15px rgba(219, 68, 55, 0.6);
+  transform: translateY(-3px);
+}
+
+.facebook {
+  background: linear-gradient(135deg, #4267B2, #6495ED);
+}
+
+.facebook:hover {
+  box-shadow: 0 6px 15px rgba(66, 103, 178, 0.6);
+  transform: translateY(-3px);
+}
+
+.twitter {
+  background: linear-gradient(135deg, #1DA1F2, #63B8FF);
+}
+
+.twitter:hover {
+  box-shadow: 0 6px 15px rgba(29, 161, 242, 0.6);
+  transform: translateY(-3px);
+}
+
+/* Teksti krijo llogari */
+.create {
+  font-size: 14px;
+  color: #0b4fa3;
+}
+
+.create a {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.create a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-box {
+    max-width: 90%;
+    padding: 25px 20px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .input-group input {
+    font-size: 15px;
+    padding: 10px 12px 10px 40px;
+  }
+
+  .login-btn {
+    font-size: 16px;
+    padding: 13px;
+  }
+
+  .social-login {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .social-login button {
+    width: 100%;
+  }
+
+  .options {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    max-width: 95%;
+    padding: 20px 15px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .input-group input {
+    font-size: 14px;
+    padding: 9px 10px 9px 36px;
+  }
+
+  .login-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .create {
+    font-size: 13px;
+  }
+}

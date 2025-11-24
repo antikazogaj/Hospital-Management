@@ -249,3 +249,52 @@ nav a.active {
     gap: 1.5rem;
   }
 }
+.footer {
+  display: flex;
+  justify-content: center; /* qendroni footer-in horizontalisht */
+  align-items: center;     /* qendroni footer-in vertikalisht */
+  width: 100%;
+  margin-top: 50px;
+  animation: fadeUpFooter 1s ease forwards;
+}
+
+.footer-bottom {
+  background: #0077b6;
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+  color: #eaf7ff;
+  backdrop-filter: blur(3px);
+  width: 100%;
+}
+
+/* Animacion per footer */
+@keyframes fadeUpFooter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Responsive */
+@media (max-width:900px) {
+  .footer-container{
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+  .footer-section{
+    min-width: auto;
+  }
+  .social-media{
+    justify-content: center;
+  }
+}

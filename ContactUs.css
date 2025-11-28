@@ -1,0 +1,216 @@
+:root{
+      --accent: #1e90ff;
+      --card-bg: #ffffff;
+      --text-light: #f3f4f6;
+      --muted: #b0b6bf;
+      --dark: #0b0f15;
+      --max-width: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text-light);
+      background: #000;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+
+    /* Sekcioni kryesor */
+    .contact-section{
+      min-height: 80vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 20px;
+      background-image: url('bg.jpg'); /* vendos këtu imazhin e sfondit (bg.jpg) */
+      background-size: cover;
+      background-position: center;
+      position:relative;
+    }
+
+    /* Errësim për të bërë tekstin të dukshëm */
+    .contact-section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(4,6,10,0.75), rgba(4,6,10,0.75));
+      pointer-events:none;
+    }
+
+    .container{
+      position:relative;
+      max-width:var(--max-width);
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:40px;
+      width: 100%;
+      align-items:center;
+      z-index:1;
+    }
+    
+
+    /* Titulli i formës */
+    .section-title{
+      grid-column: 1 / -1;
+      text-align:center;
+      color:var(--text-light);
+      font-weight:600;
+      margin-bottom:12px;
+      opacity:0.95;
+    }
+    .section-sub{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:28px;
+    }
+
+    /* Kolona e majtë: info kontakti */
+    .contact-info{
+      color:var(--text-light);
+      padding:40px 30px;
+    }
+
+    .contact-info h3{
+      margin:0 0 18px 0;
+      font-size:22px;
+      color:var(--text-light);
+    }
+
+    .info-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .info-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      color:var(--muted);
+    }
+
+    .info-item .icon{
+      min-width:36px;
+      height:36px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,255,255,0.06);
+      border-radius:8px;
+      color:var(--text-light);
+      font-size:16px;
+      padding:6px;
+    }
+
+    .info-item .meta{
+      font-size:14px;
+      line-height:1.35;
+      color:var(--muted);
+    }
+    .info-item .meta strong{
+      display:block;
+      color:var(--text-light);
+      margin-bottom:6px;
+      font-weight:600;
+    }
+
+    /* Kolona e djathtë: karta e formës */
+    .contact-card{
+      background: var(--card-bg);
+      color: #111827;
+      border-radius:8px;
+      padding:24px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.5);
+      width:100%;
+    }
+
+    .card-title{
+      font-size:20px;
+      margin:0 0 12px 0;
+      color:#111827;
+    }
+
+    form .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-bottom:14px;
+    }
+
+    input[type="text"], input[type="email"], textarea{
+      border:1px solid rgba(15,23,42,0.06);
+      padding:10px 12px;
+      border-radius:6px;
+      font-size:14px;
+      outline:none;
+      transition:box-shadow .12s, border-color .12s;
+      width:100%;
+      background:#f8fafc;
+      color:#0f172a;
+    }
+    input:focus, textarea:focus{
+      box-shadow: 0 6px 18px rgba(30,144,255,0.15);
+      border-color: rgba(30,144,255,0.6);
+    }
+    textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    .btn{
+      display:inline-block;
+      background:var(--accent);
+      color:white;
+      padding:10px 16px;
+      border-radius:6px;
+      border: none;
+      cursor:pointer;
+      font-weight:600;
+      font-size:14px;
+      transition:transform .08s ease;
+    }
+    .btn:active{ transform:translateY(1px); }
+
+    .note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Mesazhi suksesi */
+    .success{
+      display:none;
+      margin-top:12px;
+      padding:10px 12px;
+      background:#ecfdf5;
+      color:#065f46;
+      border-radius:6px;
+      font-size:14px;
+    }
+
+    /* Responsive */
+    @media (max-width:900px){
+      .container{
+        grid-template-columns: 1fr;
+      }
+      .contact-card{
+        order:2;
+      }
+      .contact-info{
+        order:1;
+        padding:20px 8px;
+      }
+    }
+
+    @media (max-width:420px){
+      .contact-section{ padding:28px 12px;}
+      .contact-info{ padding:16px 6px;}
+      .contact-card{ padding:18px; }
+    }

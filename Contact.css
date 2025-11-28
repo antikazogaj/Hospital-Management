@@ -1,4 +1,88 @@
-:root{
+/* Reset & Base Styles*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom right, #eaf7ff, #f8ffff);
+    color: #222;
+    overflow-x: hidden;
+}
+
+/*Navbar*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    background: linear-gradient(90deg, #0077b6, #0096c7);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    transition: transform 0.4s ease;
+}
+.logo-img:hover {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.logo-text span {
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.logo-text small {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+nav a {
+    color: #fff;
+    margin: 0 14px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+nav a:hover {
+    color: #a9f1ff;
+    text-shadow: 0 0 10px #a9f1ff;
+}
+nav a.active {
+    border-bottom: 3px solid #90e0ef;
+}
+
+.btn-login {
+    background: #48cae4;
+    padding: 8px 16px;
+    border-radius: 25px;
+    color: #003049;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.btn-login:hover {
+    background: #00b4d8;
+    color: #fff;
+    box-shadow: 0 0 15px #00b4d8;
+}                                                                                                             
+    :root{
       --accent: #1e90ff;
       --card-bg: #ffffff;
       --text-light: #f3f4f6;
@@ -19,17 +103,18 @@
 
 
     /* Sekcioni kryesor */
-    .contact-section{
-      min-height: 80vh;
-      display:flex;
-      align-items:center;
+    .contact-section {
+    min-height: 100vh;
+     display:flex;
+      align-items:center; 
       justify-content:center;
-      padding:48px 20px;
-      background-image: url('bg.jpg'); /* vendos këtu imazhin e sfondit (bg.jpg) */
-      background-size: cover;
-      background-position: center;
-      position:relative;
-    }
+       padding:48px 20px; 
+       background-image: url('backg.jpg'); /* vendos këtu imazhin e sfondit (bg.jpg) */
+        background-size: cover; 
+        background-position: center;
+         position:relative; 
+      }
+
 
     /* Errësim për të bërë tekstin të dukshëm */
     .contact-section::before{

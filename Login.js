@@ -87,10 +87,9 @@ function handleForgotPassword() {
 
 // Funksioni për trajtimin e "Create Account"
 function handleCreateAccount() {
-    // Ridrejtojë në një faqe regjistrimi (supozim)
-    alert('Redirecting to registration page...');
-    window.location.href = 'register.html'; // Ndrysho sipas nevojës
+    window.location.href = 'Register.html'; 
 }
+
 
 // Inicializimi i event listeners kur dokumenti është gati
 document.addEventListener('DOMContentLoaded', function() {

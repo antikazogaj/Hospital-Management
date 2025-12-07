@@ -1,10 +1,4 @@
-/// =======================
-// News.js
-// =======================
 
-// 1. Funksionalitet bazik për "Read More" (opsional në të ardhmen)
-// Kjo nuk ekziston në HTML tani, por mund të shtohet thjesht duke shtuar:
-// <a href="#" class="btn-read">Read More</a> në çdo news-card
 
 document.addEventListener("DOMContentLoaded", () => {
     // Merr të gjitha news cards

@@ -10,7 +10,7 @@ function initializeCTAButton() {
             
             // Mund të hapë një modal, alert, ose ridrejtojë në contact.html
             // Për thjeshtësi, hap një alert dhe ridrejton
-            alert('Ju lutem kontaktoni ne për të rezervuar një takim. Do të ridrejtoheni në faqen e kontaktit.');
+            alert('Ju lutem na kontaktoni për të rezervuar një takim. Do të ridrejtoheni në faqen e kontaktit.');
             window.location.href = 'contact.html'; // Ridrejtim në contact.html
         });
     }

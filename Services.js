@@ -1,6 +1,5 @@
-// Services.js - JavaScript për Services.html
 
-// Funksioni për të shtuar event listener për butonin "Book An Appointment"
+// Funksioni per te shtuar event listener per butonin "Book An Appointment"
 function initializeCTAButton() {
     const ctaButton = document.querySelector('.cta-button');
     

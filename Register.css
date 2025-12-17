@@ -101,3 +101,71 @@ input:focus {
   text-decoration: none;
   font-weight: 600;
 }
+
+/* Responsiviteti */
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+    height: auto;
+    align-items: flex-start;
+  }
+
+  .register-box {
+    margin-top: 40px;
+    max-width: 100%;
+    border-radius: 18px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 15px;
+  }
+
+  .register-btn {
+    font-size: 16px;
+  }
+}
+
+/* Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+
+  .register-box {
+    padding: 25px 18px;
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .icon {
+    font-size: 18px;
+    left: 10px;
+  }
+
+  input {
+    padding: 11px 14px 11px 40px;
+    font-size: 14px;
+  }
+
+  .register-btn {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .login-link {
+    font-size: 14px;
+  }
+}

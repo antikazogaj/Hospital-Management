@@ -1,4 +1,4 @@
-// ------------------- NAV TOGGLE (nëse e shton për responsive) -------------------
+// nav toggle per pajisje mobile//
 const navToggle = document.querySelector("#navToggle");
 const navigation = document.querySelector("nav");
 
@@ -8,13 +8,13 @@ if (navToggle) {
   });
 }
 
-// ------------------- STATS NUMBER ANIMATION -------------------
+// numrat e stats per animacione//
 const counters = document.querySelectorAll(".number");
 
 const animateCounters = () => {
   counters.forEach(counter => {
     const target = +counter.getAttribute("data-target");
-    const speed = 50; // sa shpejt të ngrihet numri
+    const speed = 50; // sa shpejt te ngrihet numri
     let count = 0;
 
     const updateCount = () => {
@@ -31,7 +31,7 @@ const animateCounters = () => {
   });
 };
 
-// start animation when section becomes visible
+// Nis animacioni kur seksioni behet i dukshem (ne ekran)//
 const statsSection = document.querySelector("#stats");
 
 const observer = new IntersectionObserver(
@@ -48,7 +48,7 @@ if (statsSection) {
   observer.observe(statsSection);
 }
 
-// ------------------- OPTIONAL SIMPLE SLIDER (nëse vendos më vonë) -------------------
+// ------------------- SLIDER I THJESHTE (opsional) -------------------//
 function initSimpleSlider() {
   const slides = document.querySelectorAll(".slide");
   let index = 0;

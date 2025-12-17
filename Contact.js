@@ -25,7 +25,7 @@
           return;
         }
 
-        // Simulo dërgimin
+        // Simulimi i  dergimin
         sendBtn.disabled = true;
         sendBtn.textContent = 'Sending...';
 
@@ -34,6 +34,6 @@
           sendBtn.textContent = 'Send Message';
           form.reset();
           success.style.display = 'block';
-        }, 900); // simulim i një kërkese
+        }, 900); // simulimi i nje kerkese
       });
     })();

@@ -1,8 +1,7 @@
-// Login.js - JavaScript për Login.html
 
-// Funksioni për validimin e formës
+// Funksioni per validimin e formes
 function validateForm(email, password) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex bazë për email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     let isValid = true;
     let errors = [];
 
@@ -28,9 +27,9 @@ function validateForm(email, password) {
     return { isValid, errors };
 }
 
-// Funksioni për trajtimin e submit-it të formës
+// Funksioni per trajtimin e submit-it te formes
 function handleFormSubmit(event) {
-    event.preventDefault(); // Parandalon dërgimin e paracaktuar
+    event.preventDefault(); // Parandalon dergimin e paracaktuar
 
     const form = event.target;
     const email = form.email.value.trim();
@@ -44,26 +43,26 @@ function handleFormSubmit(event) {
         return;
     }
 
-    // Simulim i login-it (në një aplikacion real, do të dërgohej në server)
-    // Për shembull, kontrollo kundër të dhënave të simuluar
+    // Simulim i login-it 
+    // Per shembull, kontrollo kunder te dhenave te simuluara
     const validCredentials = { email: 'admin@hospital.com', password: 'password123' };
     if (email === validCredentials.email && password === validCredentials.password) {
         alert('Login successful! Redirecting to dashboard...');
-        // Ruaj në localStorage nëse "Remember me" është zgjedhur
+        // Ruaj ne localStorage nese "Remember me" eshte zgjedhur
         if (remember) {
             localStorage.setItem('loggedIn', 'true');
             localStorage.setItem('userEmail', email);
         }
-        // Ridrejtim (p.sh., në Home.html ose dashboard)
+        // Ridrejtim (p.sh ne Home.html ose dashboard)
         window.location.href = 'Home.html';
     } else {
         alert('Invalid email or password. Please try again.');
     }
 }
 
-// Funksioni për trajtimin e butonave të social login
+// Funksioni per trajtimin e butonave te social login
 function handleSocialLogin(platform) {
-    // Simulim: Hap URL-të përkatëse (në realitet, do të integrohesh me API-të e tyre)
+    // Simulim: Hap URL-te perkatese 
     const urls = {
         google: 'https://accounts.google.com/signin',
         facebook: 'https://www.facebook.com/login',
@@ -76,34 +75,34 @@ function handleSocialLogin(platform) {
     }
 }
 
-// Funksioni për trajtimin e "Forgot Password?"
+// Funksioni per trajtimin e "Forgot Password?"
 function handleForgotPassword() {
-    // Mund të hapë një modal ose ridrejtojë
+    // Mund te ridrejtojë
     const email = prompt('Enter your email to reset password:');
     if (email) {
         alert(`Password reset link sent to ${email}. (This is a simulation.)`);
     }
 }
 
-// Funksioni për trajtimin e "Create Account"
+// Funksioni per trajtimin e "Create Account"
 function handleCreateAccount() {
     window.location.href = 'Register.html'; 
 }
 
 
-// Inicializimi i event listeners kur dokumenti është gati
+// Inicializimi i event listeners kur dokumenti eshte gati
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
     const socialButtons = document.querySelectorAll('.social-login button');
     const forgotLink = document.querySelector('.forgot');
     const createLink = document.querySelector('.create a');
 
-    // Event listener për form submit
+    // Event listener per form submit
     if (form) {
         form.addEventListener('submit', handleFormSubmit);
     }
 
-    // Event listeners për social login buttons
+    // Event listeners per social login buttons
     socialButtons.forEach(button => {
         button.addEventListener('click', function() {
             const platform = this.className; // google, facebook, twitter
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Event listener për "Forgot Password?"
+    // Event listener per "Forgot Password?"
     if (forgotLink) {
         forgotLink.addEventListener('click', function(event) {
             event.preventDefault();
@@ -119,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listener për "Create Account"
+    // Event listener per "Create Account"
     if (createLink) {
         createLink.addEventListener('click', function(event) {
             event.preventDefault();
@@ -127,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Kontrollo nëse përdoruesi është i loguar (nga localStorage)
+    // Kontrollo nese perdoruesi eshte i loguar
     if (localStorage.getItem('loggedIn') === 'true') {
         alert('You are already logged in. Redirecting...');
         window.location.href = 'Home.html';

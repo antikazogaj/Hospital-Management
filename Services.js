@@ -1,6 +1,5 @@
-// Services.js - JavaScript për Services.html
 
-// Funksioni për të shtuar event listener për butonin "Book An Appointment"
+// Funksioni për të shtuar event listener per butonin "Book An Appointment"
 function initializeCTAButton() {
     const ctaButton = document.querySelector('.cta-button');
     
@@ -8,15 +7,15 @@ function initializeCTAButton() {
         ctaButton.addEventListener('click', function(event) {
             event.preventDefault(); // Parandalon ridrejtimin e paracaktuar
             
-            // Mund të hapë një modal, alert, ose ridrejtojë në contact.html
-            // Për thjeshtësi, hap një alert dhe ridrejton
+            // Mund te ridrejtoje ne contact.html
+            // Per thjeshtesi, hap nje alert dhe ridrejton
             alert('Ju lutem na kontaktoni për të rezervuar një takim. Do të ridrejtoheni në faqen e kontaktit.');
             window.location.href = 'contact.html'; // Ridrejtim në contact.html
         });
     }
 }
 
-// Funksioni për të bërë navbar sticky kur scroll
+// Funksioni per te bere navbar sticky kur scroll
 function makeNavbarSticky() {
     const navbar = document.querySelector('.navbar');
     const stickyOffset = navbar.offsetTop;
@@ -30,7 +29,7 @@ function makeNavbarSticky() {
     });
 }
 
-// Funksioni për animacion fade-in për service cards kur scroll
+// Funksioni per animacion fade-in per service cards kur scroll
 function fadeInOnScroll() {
     const cards = document.querySelectorAll('.service-card');
     
@@ -47,7 +46,7 @@ function fadeInOnScroll() {
     });
 }
 
-// Funksioni për të shtuar hover effect për service cards (opsionale, për interaktivitet shtesë)
+// Funksioni per te shtuar hover effect per service cards
 function addHoverEffects() {
     const cards = document.querySelectorAll('.service-card');
     
@@ -63,7 +62,7 @@ function addHoverEffects() {
     });
 }
 
-// Inicializimi i funksioneve kur dokumenti është gati
+// Inicializimi i funksioneve kur dokumenti eshte gati
 document.addEventListener('DOMContentLoaded', function() {
     initializeCTAButton();
     makeNavbarSticky();

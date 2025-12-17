@@ -1,4 +1,4 @@
-/* Reset & Base Styles*/
+/* Pjesa e fillimit - reset*/
 * {
     margin: 0;
     padding: 0;
@@ -319,7 +319,7 @@ nav a.active {
     background: #fff;
     border-radius: 25px;
     padding: 35px 25px;
-    flex: 1 1 250px; /* perputhet me 4 karta ne rresht */
+    flex: 1 1 250px; 
     max-width: 300px;
     box-shadow: 0 12px 25px rgba(0,0,0,0.1);
     transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
@@ -563,7 +563,7 @@ footer {
   font-size: 1.2rem;
 }
 
-/* Animations on Scroll (optional)*/
+/* Animations on Scroll*/
 .news-card, .contact-card {
   opacity: 0;
   transform: translateY(30px);
@@ -689,9 +689,9 @@ footer {
   justify-content: center;
   width: 50px;
   height: 50px;
-  background: #fff;   /* sfond i bardhë që duket gjithmonë */
-  color: #0077b6;    /* ngjyra fillestare e ikonës */
-  border-radius: 50%; /* bën rrumbullake */
+  background: #fff;   
+  color: #0077b6;    
+  border-radius: 50%; 
   font-size: 20px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -700,13 +700,13 @@ footer {
 
 /* Hover efekt modern */
 .social-icon:hover{
-  background: #00b4d8; /* sfond i kaltër kur hover */
+  background: #00b4d8; 
   color: #fff;
   transform: translateY(-5px) scale(1.2);
   box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
 }
 
-/* Ngjyra brand për secilin rrjet social */
+/* Ngjyra brand per secilin rrjet social */
 .social-icon.facebook{ background: #1877f2; color: #fff; }
 .social-icon.instagram{ background: #d6249f; color: #fff; }
 .social-icon.twitter{ background: #1da1f2; color: #fff; }

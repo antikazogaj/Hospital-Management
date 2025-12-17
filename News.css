@@ -1,4 +1,4 @@
-/* ========== RESET & BASE ========== */
+/* Pjesa e fillimit - reset */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ========== NAVBAR ========== */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -83,13 +83,13 @@ nav a.active {
     box-shadow: 0 0 15px #00b4d8;
 }
 
-/* ========== NEWS SECTION WRAPPER ========== */
+/* NEWS SECTION WRAPPER */
 .news-section-wrapper {
     background: url('wrapp-backg.jpg') no-repeat center center/cover;
     padding: 5rem 0;
 }
 
-/* ========== NEWS SECTION TITLE ========== */
+/* NEWS SECTION TITLE */
 .news-section {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
@@ -126,7 +126,7 @@ nav a.active {
     line-height: 1.7;
 }
 
-/* ========== NEWS CARDS MODERN STYLE ========== */
+/* NEWS CARDS MODERN STYLE  */
 .news-card {
     display: flex;
     flex-direction: column;
@@ -206,7 +206,7 @@ nav a.active {
     color: #1e90ff;
 }
 
-/* ========== ANIMATIONS ========== */
+/* Animacionet */
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -218,7 +218,7 @@ nav a.active {
     }
 }
 
-/* ========== RESPONSIVE STYLES ========== */
+/* stili responsiv */
 
 /* Medium desktop */
 @media (max-width: 1200px) {
@@ -264,7 +264,7 @@ nav a.active {
     }
 }
 
-/* Very small screens */
+/*pjesa e zvog screen*/
 @media (max-width: 480px) {
     .news-card {
         margin: 20px 10px;
@@ -400,7 +400,7 @@ nav a.active {
   box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
 }
 
-/* Ngjyra brand për secilin rrjet social */
+/* Ngjyra brand per secilin rrjet social */
 .social-icon.facebook{ background: #1877f2; color: #fff; }
 .social-icon.instagram{ background: #d6249f; color: #fff; }
 .social-icon.twitter{ background: #1da1f2; color: #fff; }

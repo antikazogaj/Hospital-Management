@@ -1,10 +1,10 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Merr të gjitha news cards
+    // Merr te gjitha news cards
     const newsCards = document.querySelectorAll(".news-card");
 
-    // Shtojmë klikim në secilën card për alert ose për zgjerim të info
+    // Shtojme klikim ne secilen card per zgjerim te info
     newsCards.forEach(card => {
         card.addEventListener("click", () => {
             const title = card.querySelector("h2").textContent;
@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Opsionale: mund të shtosh "Read More" modal më vonë
+   
 });
 
-// 2. Validimi i elementeve të thjeshta
-// Kjo siguron që çdo news-card ka një titull, një imazh dhe datë
+// 2. Validimi i elementeve te thjeshta
+// Kjo siguron qe çdo news-card ka nje titull, nje imazh dhe date
 document.querySelectorAll(".news-card").forEach(card => {
     const img = card.querySelector("img");
     const title = card.querySelector("h2");

@@ -1,4 +1,4 @@
-/* RESET */
+/* Pjesa e fillimit - reset */
 *{
     margin:0;
     padding:0;
@@ -213,7 +213,7 @@ font-size: 1.05rem;
 margin-bottom: 40px;
 }
 
-/* Services Container Grid */
+/* kartat per serice */
 .services-container {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

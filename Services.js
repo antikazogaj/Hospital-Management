@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 // Funksioni për të shtuar event listener per butonin "Book An Appointment"
+=======
+// Funksioni per te shtuar event listener per butonin "Book An Appointment"
+>>>>>>> 2bfe70ce24ed1f649d007116e88fcf63228e6253
 function initializeCTAButton() {
     const ctaButton = document.querySelector('.cta-button');
     

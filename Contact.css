@@ -1,4 +1,4 @@
-/* Reset & Base Styles*/
+/* Pjesa e fillimi - reset*/
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/*Navbar*/
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -102,21 +102,21 @@ nav a.active {
     }
 
 
-    /* Sekcioni kryesor */
+    /* Sekcioni kryesore */
     .contact-section {
     min-height: 100vh;
      display:flex;
       align-items:center; 
       justify-content:center;
        padding:48px 20px; 
-       background-image: url('backg.jpg'); /* vendos këtu imazhin e sfondit (bg.jpg) */
+       background-image: url('backg.jpg'); 
         background-size: cover; 
         background-position: center;
          position:relative; 
       }
 
 
-    /* Errësim për të bërë tekstin të dukshëm */
+    /* efekti-Erresim per te bere tekstin te jete dukshem */
     .contact-section::before{
       content:"";
       position:absolute;
@@ -137,7 +137,7 @@ nav a.active {
     }
     
 
-    /* Titulli i formës */
+    /* Titulli i formes */
     .section-title{
       grid-column: 1 / -1;
       text-align:center;
@@ -153,7 +153,7 @@ nav a.active {
       margin-bottom:28px;
     }
 
-    /* Kolona e majtë: info kontakti */
+    /* Kolona e majte per  info kontakti */
     .contact-info{
       color:var(--text-light);
       padding:40px 30px;
@@ -206,7 +206,7 @@ nav a.active {
       font-weight:600;
     }
 
-    /* Kolona e djathtë: karta e formës */
+    /* Kolona e djathte per karta e formes */
     .contact-card{
       background: var(--card-bg);
       color: #111827;

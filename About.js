@@ -1,17 +1,16 @@
-// About.js - JavaScript për About.html
 
-// Funksioni për të shtuar event listeners për butonat e kontaktit
+// Funksioni per te shtuar event listeners per butonat e kontaktit
 function initializeContactButtons() {
-    // Merr të gjitha butonat me klasën "btn-team"
+    // Merr te gjitha butonat me klasen "btn-team"
     const contactButtons = document.querySelectorAll('.btn-team');
     
     contactButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Gjeni kartën prind (team-card)
+            // Gjeni karten prind (team-card)
             const card = this.closest('.team-card');
             
-            // Gjeni email-in brenda kartës
-            const emailElement = card.querySelector('.desc:nth-of-type(2)'); // Email është i dyti .desc
+            // Gjeni email-in brenda kartes
+            const emailElement = card.querySelector('.desc:nth-of-type(2)'); // Email eshte i dyti .desc
             if (emailElement) {
                 const emailText = emailElement.textContent.replace('Email: ', '').trim();
                 
@@ -24,7 +23,7 @@ function initializeContactButtons() {
     });
 }
 
-// Funksioni për të bërë navbar sticky kur scroll
+// Funksioni per te bere navbar sticky kur scroll
 function makeNavbarSticky() {
     const navbar = document.querySelector('.navbar');
     const stickyOffset = navbar.offsetTop;
@@ -38,7 +37,7 @@ function makeNavbarSticky() {
     });
 }
 
-// Funksioni për animacion fade-in për team cards kur scroll
+// Funksioni per animacione fade-in  dhe per team cards kur bejme  scroll
 function fadeInOnScroll() {
     const cards = document.querySelectorAll('.team-card');
     
@@ -55,7 +54,7 @@ function fadeInOnScroll() {
     });
 }
 
-// Inicializimi i funksioneve kur dokumenti është gati
+// Inicializimi i funksioneve kur dokumenti eshte gati
 document.addEventListener('DOMContentLoaded', function() {
     initializeContactButtons();
     makeNavbarSticky();

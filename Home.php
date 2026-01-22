@@ -33,12 +33,12 @@ $latestNews = $newsResult->fetch_assoc();
     </div>
   </div>
   <nav>
-    <a href="home.php" class="active">Home</a>
-    <a href="about.php">About</a>
-    <a href="services.php">Services</a>
-    <a href="news.php">News</a>
-    <a href="contact.php">Contact</a>
-    <a href="login.php" class="btn-login">Login</a>
+    <a href="Home.php" class="active">Home</a>
+    <a href="About.php">About</a>
+    <a href="Services.php">Services</a>
+    <a href="News.php">News</a>
+    <a href="Contact.php">Contact</a>
+    <a href="Login.php" class="btn-login">Login</a>
   </nav>
 </header>
 

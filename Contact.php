@@ -1,41 +1,59 @@
 <?php
-require_once "config/Database.php";
+session_start();
+require_once "classes/Database.php";
 require_once "classes/Contact.php";
+require_once "classes/User.php";
+
+$database = new Database();
+$db = $database->connect();
+$contact = new Contact($db);
 
 $success = false;
 $error = false;
+$errorMsg = '';
 
+// Procesimi i formës
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $database = new Database();
-    $db = $database->connect();
 
-    $contact = new Contact($db);
+    $contact->name = htmlspecialchars(trim($_POST['name'] ?? ''));
+    $contact->email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+    $contact->subject = htmlspecialchars(trim($_POST['subject'] ?? ''));
+    $contact->message = htmlspecialchars(trim($_POST['message'] ?? ''));
 
-    $contact->name = htmlspecialchars(trim($_POST['name']));
-    $contact->email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    $contact->subject = htmlspecialchars(trim($_POST['subject']));
-    $contact->message = htmlspecialchars(trim($_POST['message']));
-
-    if ($contact->email && $contact->create()) {
+    // Validimet
+    if (empty($contact->name) || empty($contact->subject) || empty($contact->message)) {
+        $error = true;
+        $errorMsg = "Ju lutemi plotësoni të gjitha fushat.";
+    } elseif (!$contact->email) {
+        $error = true;
+        $errorMsg = "Email-i nuk është valid.";
+    } elseif ($contact->create()) {
         $success = true;
     } else {
         $error = true;
+        $errorMsg = "Diçka shkoi gabim. Provoni përsëri.";
     }
+}
+
+// Nëse admin, merr të gjitha mesazhet
+$allContacts = [];
+if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
+    $allContacts = $contact->readAll();
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="Contact.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+<link rel="stylesheet" href="Contact.css">
 </head>
 <body>
 
 <header class="navbar">
     <div class="logo">
-        <img src="images/hospital-logo.jpg" alt="Hospital Logo" class="logo-img" />
+        <img src="images/hospital-logo.jpg" alt="Hospital Logo" class="logo-img">
         <div class="logo-text">
             <span>NovaHealth</span><br /><small>HOSPITAL</small>
         </div>
@@ -46,57 +64,71 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <a href="Services.php">Services</a>
         <a href="News.php">News</a>
         <a href="Contact.php" class="active">Contact</a>
-        <a href="Login.php" class="btn-login">Login</a>
+        <?php if(isset($_SESSION['user'])): ?>
+            <a href="logout.php" class="btn-login">Logout</a>
+        <?php else: ?>
+            <a href="login.php" class="btn-login">Login</a>
+        <?php endif; ?>
     </nav>
 </header>
 
-<script src="Contact.js"></script>
-
 <main class="contact-section">
     <div class="container">
-
-        <!-- Contact info -->
-        <section class="contact-info">
-            <h3>Contact us</h3>
-            <ul class="info-list">
-                <li class="info-item"><strong>ADDRESS:</strong> 123 Hospital St</li>
-                <li class="info-item"><strong>PHONE:</strong> 044-123-456</li>
-                <li class="info-item"><strong>EMAIL:</strong> info@hospital.com</li>
-                <li class="info-item"><strong>WEBSITE:</strong> NovaHealth-Hospital.com</li>
-            </ul>
-        </section>
-
-        <!-- Contact form -->
+        <!-- Forme kontakti -->
         <aside class="contact-card">
             <h3 class="card-title">Get in touch</h3>
 
             <?php if ($success): ?>
-                <div class="success">Your message was sent successfully!</div>
+                <div class="success">Mesazhi u dërgua me sukses!</div>
             <?php elseif ($error): ?>
-                <div class="error">Something went wrong. Please try again.</div>
+                <div class="error"><?= htmlspecialchars($errorMsg) ?></div>
             <?php endif; ?>
 
             <form method="POST" novalidate>
                 <div class="field">
-                    <input name="name" type="text" placeholder="Name" required>
+                    <input name="name" type="text" placeholder="Name" required value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
                 </div>
-
                 <div class="field">
-                    <input name="email" type="email" placeholder="Email" required>
+                    <input name="email" type="email" placeholder="Email" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
                 </div>
-
                 <div class="field">
-                    <input name="subject" type="text" placeholder="Subject" required>
+                    <input name="subject" type="text" placeholder="Subject" required value="<?= htmlspecialchars($_POST['subject'] ?? '') ?>">
                 </div>
-
                 <div class="field">
-                    <textarea name="message" placeholder="Message" required></textarea>
+                    <textarea name="message" placeholder="Message" required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
                 </div>
-
                 <button type="submit" class="btn">Send Message</button>
             </form>
         </aside>
 
+        <!-- Pamja për admin -->
+        <?php if (!empty($allContacts)): ?>
+            <section class="admin-contacts">
+                <h3>All Contact Messages (Admin View)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Sent At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($allContacts as $c): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($c['name']) ?></td>
+                                <td><?= htmlspecialchars($c['email']) ?></td>
+                                <td><?= htmlspecialchars($c['subject']) ?></td>
+                                <td><?= nl2br(htmlspecialchars($c['message'])) ?></td>
+                                <td><?= htmlspecialchars($c['created_at']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </section>
+        <?php endif; ?>
     </div>
 </main>
 

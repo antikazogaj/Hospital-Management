@@ -1,32 +1,22 @@
 <?php
 session_start();
 require_once "classes/Database.php";
+require_once "classes/News.php";
 
 $db = (new Database())->connect();
+$newsObj = new News($db);
 
-$query = "
-    SELECT n.*, u.name AS author 
-    FROM news n 
-    LEFT JOIN users u ON n.created_by = u.id 
-    ORDER BY n.created_at DESC
-";
+// Merr të gjitha lajmet së bashku me emrin e përdoruesit që i ka shtuar
+$newsList = $newsObj->readAll(); // metoda readAll() në News.php duhet të bëjë SELECT * FROM news LEFT JOIN users
 
-$result = $db->query($query);
-
-$newsList = [];
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $newsList[] = $row;
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaHealth News</title>
-    <link rel="stylesheet" href="News.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaHealth News</title>
+<link rel="stylesheet" href="News.css">
 </head>
 <body>
 
@@ -62,15 +52,11 @@ if ($result) {
                 NovaHealth Hospital ju prezanton zhvillimet më të fundit në fushën e mjekësisë,
                 inovacionet tona klinike dhe iniciativat për përmirësimin e kujdesit ndaj pacientëve.
             </p>
-            <p>
-                Qëndroni të informuar me njoftimet tona më të rëndësishme dhe zhvillimet që e bëjnë
-                NovaHealth një hap përpara.
-            </p>
         </section>
     </div>
 
-    <?php if (!empty($newsList)): ?>
-        <?php foreach ($newsList as $news): ?>
+    <?php if(!empty($newsList)): ?>
+        <?php foreach($newsList as $news): ?>
             <section class="news-card">
                 <div class="news-card-img">
                     <img 
@@ -85,15 +71,48 @@ if ($result) {
                     <p><?= nl2br(htmlspecialchars($news['content'])) ?></p>
 
                     <p class="news-author">
-                        <strong>Added by:</strong>
-                        <?= htmlspecialchars($news['author'] ?? 'Admin') ?>
+                        <strong>Added by:</strong> <?= htmlspecialchars($news['author'] ?? 'Admin') ?>
                     </p>
+
+                    <?php if (!empty($news['file'])): ?>
+                        <p><a href="uploads/<?= htmlspecialchars($news['file']) ?>" target="_blank">Download PDF</a></p>
+                    <?php endif; ?>
                 </div>
             </section>
         <?php endforeach; ?>
     <?php else: ?>
         <p style="text-align:center;">No news available.</p>
     <?php endif; ?>
+
+    <?php if(isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+        <section class="admin-news">
+            <h3>Admin Panel - Manage News</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($newsList as $news): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($news['title']) ?></td>
+                            <td><?= htmlspecialchars($news['author'] ?? 'Admin') ?></td>
+                            <td><?= htmlspecialchars($news['created_at']) ?></td>
+                            <td>
+                                <a href="edit_news.php?id=<?= $news['id'] ?>">Edit</a> |
+                                <a href="delete_news.php?id=<?= $news['id'] ?>" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </section>
+    <?php endif; ?>
+
 </main>
 
 <footer>
@@ -115,19 +134,6 @@ if ($result) {
                 <li><a href="Contact.php">Contact</a></li>
             </ul>
         </div>
-
-        <div class="footer-section">
-            <h3>Follow Us</h3>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        &copy; 2025 NovaHealth Hospital. All Rights Reserved.
     </div>
 </footer>
 

@@ -42,6 +42,28 @@ $latestNews = $newsResult->fetch_assoc();
   </nav>
 </header>
 
+<!-- SLIDER -->
+<section class="slider">
+  <div class="slides">
+    <div class="slide active">
+      <img src="images/slide1.jpg" alt="Hospital View">
+      <div class="caption">Welcome to NovaHealth Hospital</div>
+    </div>
+    <div class="slide">
+      <img src="images/slide2.jpg" alt="Doctors Team">
+      <div class="caption">Professional Medical Staff</div>
+    </div>
+    <div class="slide">
+      <img src="images/slide3.jpg" alt="Patients Care">
+      <div class="caption">Compassionate Patient Care</div>
+    </div>
+  </div>
+  <div class="navigation">
+    <span class="prev">&#10094;</span>
+    <span class="next">&#10095;</span>
+  </div>
+</section>
+
 <main class="main-container">
 
 <!-- WELCOME SECTION -->
@@ -56,7 +78,7 @@ $latestNews = $newsResult->fetch_assoc();
   </div>
 </section>
 
-<!--  STATISTICS -->
+<!-- STATISTICS -->
 <section class="stats" id="stats">
   <h2>Clinical Performance Summary</h2>
   <div class="stat-cards">
@@ -110,9 +132,8 @@ $latestNews = $newsResult->fetch_assoc();
   </div>
 </section>
 
-<!--NEWS + CONTACT -->
+<!-- NEWS + CONTACT -->
 <section class="news-contact">
-
   <article class="news-card">
     <div class="news-header">
       <i class="fas fa-newspaper"></i> Latest News
@@ -139,7 +160,6 @@ $latestNews = $newsResult->fetch_assoc();
       <a href="contact.php" class="btn-contact">Send Message</a>
     </div>
   </aside>
-
 </section>
 
 </main>
@@ -147,24 +167,21 @@ $latestNews = $newsResult->fetch_assoc();
 <!-- FOOTER -->
 <footer>
   <div class="footer-container">
-
     <div class="footer-section">
       <h3>Contact Us</h3>
       <p>Phone: 044-123-456</p>
       <p>Email: info@hospital.com</p>
       <p>Address: 123 Hospital St</p>
     </div>
-
     <div class="footer-section">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="about.php">About Us</a></li>
-        <li><a href="services.php">Services</a></li>
-        <li><a href="news.php">News</a></li>
-        <li><a href="contact.php">Contact</a></li>
+        <li><a href="About.php">About Us</a></li>
+        <li><a href="Services.php">Services</a></li>
+        <li><a href="News.php">News</a></li>
+        <li><a href="Contact.php">Contact</a></li>
       </ul>
     </div>
-
     <div class="footer-section">
       <h3>Follow Us</h3>
       <div class="social-media">
@@ -173,9 +190,7 @@ $latestNews = $newsResult->fetch_assoc();
         <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
-
   </div>
-
   <div class="footer-bottom">
     &copy; 2025 NovaHealth Hospital. All Rights Reserved.
   </div>

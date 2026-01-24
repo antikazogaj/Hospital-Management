@@ -4,6 +4,12 @@ require_once "classes/Database.php";
 require_once "classes/User.php";
 
 $loginError = '';
+$loginSuccessMessage = '';
+
+// Mesazh nga register.php
+if (isset($_GET['registered'])) {
+    $loginSuccessMessage = "Regjistrimi u krye me sukses! Ju mund të identifikoheni tani.";
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $database = new Database();
@@ -14,8 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user->password = $_POST['password'] ?? '';
 
     if ($user->login()) {
-        // Redirect tek faqja kryesore pas login
-        header("Location: Home.php");
+        // Redirect sipas role
+        if ($_SESSION['user']['role'] === 'admin') {
+            header("Location: admin_dashboard.php");
+        } else {
+            header("Location: Home.php");
+        }
         exit;
     } else {
         $loginError = "Email ose fjalëkalimi i gabuar!";
@@ -37,14 +47,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <h2>Welcome Back</h2>
       <p class="subtitle">Sign in to continue</p>
 
+      <?php if($loginSuccessMessage): ?>
+          <div class="success"><?= htmlspecialchars($loginSuccessMessage) ?></div>
+      <?php endif; ?>
+
       <?php if($loginError): ?>
-          <div class="error"><?= $loginError ?></div>
+          <div class="error"><?= htmlspecialchars($loginError) ?></div>
       <?php endif; ?>
 
       <form method="POST">
         <div class="input-group">
           <i class="icon">👤</i>
-          <input type="text" name="email" placeholder="Email or Username" required />
+          <input type="email" name="email" placeholder="Email Address" required />
         </div>
         <div class="input-group">
           <i class="icon">🔒</i>
@@ -63,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button class="facebook">Facebook</button>
         <button class="twitter">Twitter</button>
       </div>
+
       <p class="create">New here? <a href="Register.php">Create Account</a></p>
     </div>
   </div>

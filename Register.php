@@ -7,28 +7,43 @@ $registerError = '';
 $registerSuccess = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // Lidhja me DB
     $database = new Database();
     $db = $database->connect();
 
     $user = new User($db);
-    $user->fullname = htmlspecialchars(trim($_POST['fullname'] ?? ''));
+
+    // Marrja dhe pastrimi i inputeve
+    $user->name = htmlspecialchars(trim($_POST['fullname'] ?? ''));
     $user->email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
     $password = $_POST['password'] ?? '';
-    $confirm = $_POST['confirm'] ?? '';
+    $confirm  = $_POST['confirm'] ?? '';
 
-    if (!$user->email) {
+    // Validimet
+    if (empty($user->name)) {
+        $registerError = "Emri nuk mund të jetë bosh.";
+    } elseif (!$user->email) {
         $registerError = "Email i dhënë nuk është valid.";
+    } elseif (strlen($password) < 6) {
+        $registerError = "Fjalëkalimi duhet të ketë së paku 6 karaktere.";
     } elseif ($password !== $confirm) {
         $registerError = "Fjalëkalimet nuk përputhen.";
     } else {
-        $user->password = password_hash($password, PASSWORD_DEFAULT);
-        // Mund të vendosim rolin default "user"
+
+        // Vendos password (hash bëhet në User.php)
+        $user->password = $password;
+
+        // Roli default
         $user->role = "user";
 
-        if ($user->register()) {
+        // Regjistrimi
+        if ($user->create()) {
             $registerSuccess = true;
+            header("Location: login.php?registered=1"); // redirect tek login me mesazh sukses
+            exit;
         } else {
-            $registerError = "Ka ndodhur një gabim. Emaili mund të ekzistojë.";
+            $registerError = "Ky email ekziston ose ka ndodhur një gabim.";
         }
     }
 }
@@ -43,48 +58,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="Register.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="register-box">
-            <h2>Create Account</h2>
-            <p class="subtitle">Join our hospital system</p>
 
-            <?php if ($registerSuccess): ?>
-                <div class="success">Regjistrimi u krye me sukses! <a href="Login.php">Log in</a></div>
-            <?php elseif ($registerError): ?>
-                <div class="error"><?= $registerError ?></div>
-            <?php endif; ?>
+<div class="container">
+    <div class="register-box">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join our hospital system</p>
 
-            <form method="POST">
-                <div class="input-group">
-                    <i class="icon">👤</i>
-                    <input type="text" name="fullname" placeholder="Full Name" required />
-                </div>
+        <?php if ($registerError): ?>
+            <div class="error"><?= htmlspecialchars($registerError) ?></div>
+        <?php endif; ?>
 
-                <div class="input-group">
-                    <i class="icon">📧</i>
-                    <input type="email" name="email" placeholder="Email Address" required />
-                </div>
+        <form method="POST">
+            <!-- FULL NAME -->
+            <div class="input-group">
+                <i class="icon">👤</i>
+                <input type="text" name="fullname" placeholder="Full Name" required>
+            </div>
 
-                <div class="input-group">
-                    <i class="icon">🔒</i>
-                    <input type="password" name="password" placeholder="Password" required />
-                </div>
+            <!-- EMAIL -->
+            <div class="input-group">
+                <i class="icon">📧</i>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
 
-                <div class="input-group">
-                    <i class="icon">🔒</i>
-                    <input type="password" name="confirm" placeholder="Confirm Password" required />
-                </div>
+            <!-- PASSWORD -->
+            <div class="input-group">
+                <i class="icon">🔒</i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
 
-                <button type="submit" class="register-btn">Register</button>
-            </form>
+            <!-- CONFIRM PASSWORD -->
+            <div class="input-group">
+                <i class="icon">🔒</i>
+                <input type="password" name="confirm" placeholder="Confirm Password" required>
+            </div>
 
-            <p class="login-link">
-                Already have an account? <a href="Login.php">Log In</a>
-            </p>
-        </div>
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+
+        <p class="login-link">
+            Already have an account? <a href="Login.php">Log In</a>
+        </p>
     </div>
+</div>
 
-    <script src="Register.js"></script>
 </body>
 </html>
-

@@ -59,7 +59,7 @@ $result = $db->query($query);
 
 <br><br>
 
-<a href="News_Management.php">📰 Menaxho Lajmet</a>
+<a href="News.php">📰 Menaxho Lajmet</a>
 
 </body>
 </html>

@@ -1,155 +1,120 @@
 <?php
-require "classes/Database.php";
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header(header: "Location: login.php");
+    exit;
+}
 
-$db = (new Database())->connect();
-
-/* HOME CONTENT */
-$homeResult = $db->query("SELECT * FROM pages WHERE title='home'");
-$home = $homeResult->fetch_assoc();
-
-/* LATEST NEWS */
-$newsResult = $db->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 1");
-$latestNews = $newsResult->fetch_assoc();
+echo "Welcome, " . $_SESSION['email'] . '!';
 ?>
+<a href ="logout.php">Logout</a>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NovaHealth Hospital - Home</title>
+  <title>NovaHealth Hospital-Home</title>
   <link rel="stylesheet" href="Home.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/hospital-logo.jpg" alt="Hospital Logo" class="logo-img" />
+      <div class="logo-text">
+        <span>NovaHealth</span><br /><small>HOSPITAL</small>
+      </div>
+    </div>
+    <nav>
+      <a href="Home.html" class="active">Home</a>
+      <a href="About.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="btn-login">Login</a>
+    </nav>
+  </header>
 
-<!-- HEADER -->
-<header class="navbar">
-  <div class="logo">
-    <img src="images/hospital-logo.jpg" alt="Hospital Logo" class="logo-img" />
-    <div class="logo-text">
-      <span>NovaHealth</span><br><small>HOSPITAL</small>
-    </div>
-  </div>
-  <nav>
-    <a href="Home.php" class="active">Home</a>
-    <a href="About.php">About</a>
-    <a href="Services.php">Services</a>
-    <a href="News.php">News</a>
-    <a href="Contact.php">Contact</a>
-    <a href="Login.php" class="btn-login">Login</a>
-  </nav>
-</header>
+  <main class="main-container">
+    <section class="welcome">
+      <div class="welcome-text">
+        <h1>Mirësevini në NovaHealth Hospital</h1>
+        <p>Ne ofrojmë kujdes shëndetësor gjithëpërfshirës dhe të avancuar, duke siguruar mirëqenie, rehati dhe trajtim të personalizuar për çdo pacient.</p>
+        <a href="Services.html" class="cta-button">Explore Services</a>
+      </div>
+      <div class="welcome-image">
+        <img src="images/hospital.jpg" alt="Doctor Illustration" />
+      </div>
+    </section>
 
-<!-- SLIDER -->
-<section class="slider">
-  <div class="slides">
-    <div class="slide active">
-      <img src="images/slide1.jpg" alt="Hospital View">
-      <div class="caption">Welcome to NovaHealth Hospital</div>
+   <section class="stats" id="stats">
+    <h2>Clinical Performance Summary</h2>
+    <div class="stat-cards">
+        <div class="stat-card">
+            <div class="stat-icon">👤</div>
+            <p class="number" data-target="1200">1200</p>
+            <p>Patients</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">📅</div> 
+            <p class="number" data-target="50">50</p>
+            <p>Appointments</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">👨‍⚕️</div>
+            <p class="number" data-target="30">30</p>
+            <p>Doctors</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">🩺</div> 
+            <p class="number" data-target="10">10</p>
+            <p>Nurses</p>
+        </div>
     </div>
-    <div class="slide">
-      <img src="images/slide2.jpg" alt="Doctors Team">
-      <div class="caption">Professional Medical Staff</div>
-    </div>
-    <div class="slide">
-      <img src="images/slide3.jpg" alt="Patients Care">
-      <div class="caption">Compassionate Patient Care</div>
-    </div>
-  </div>
-  <div class="navigation">
-    <span class="prev">&#10094;</span>
-    <span class="next">&#10095;</span>
-  </div>
 </section>
 
-<main class="main-container">
-
-<!-- WELCOME SECTION -->
-<section class="welcome">
-  <div class="welcome-text">
-    <h1><?= htmlspecialchars($home['heading']) ?></h1>
-    <p><?= htmlspecialchars($home['content']) ?></p>
-    <a href="services.php" class="cta-button">Explore Services</a>
-  </div>
-  <div class="welcome-image">
-    <img src="images/hospital.jpg" alt="Hospital Image" />
-  </div>
+<!--Services-->
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="service-list">
+        <div class="service-item">
+            <div class="icon">🔬</div>
+            <strong>Shërbime Laboratorike</strong>
+            <p>Testime dhe analiza diagnostifikuese nga ekspertë për vlerësim të saktë të shëndetit.</p>
+        </div>
+        <div class="service-item">
+            <div class="icon">➕</div>
+            <strong>Shërbime Emergjente</strong>
+            <p>Kujdes emergjent 24/7 që garanton vëmendje dhe trajtim të menjëhershëm.</p>
+        </div>
+        <div class="service-item">
+            <div class="icon">🩺</div>
+            <strong>Shërbime Konsultative</strong>
+            <p>Këshilla mjekësore profesionale nga specialistë të kualifikuar dhe me përvojë</p>
+        </div>
+        <div class="service-item">
+            <div class="icon">🧪</div>
+            <strong>Shërbime Ekzaminimi</strong>
+            <p>Kontrolle gjithëpërfshirëse shëndetësore për të monitoruar dhe ruajtur mirëqenien tuaj.</p>
+        </div>
+    </div>
 </section>
 
-<!-- STATISTICS -->
-<section class="stats" id="stats">
-  <h2>Clinical Performance Summary</h2>
-  <div class="stat-cards">
-    <div class="stat-card">
-      <div class="stat-icon">👤</div>
-      <p class="number">1200</p>
-      <p>Patients</p>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">📅</div>
-      <p class="number">50</p>
-      <p>Appointments</p>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">👨‍⚕️</div>
-      <p class="number">30</p>
-      <p>Doctors</p>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">🩺</div>
-      <p class="number">10</p>
-      <p>Nurses</p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services">
-  <h2>Our Services</h2>
-  <div class="service-list">
-    <div class="service-item">
-      <div class="icon">🔬</div>
-      <strong>Shërbime Laboratorike</strong>
-      <p>Testime dhe analiza diagnostifikuese nga ekspertë për vlerësim të saktë.</p>
-    </div>
-    <div class="service-item">
-      <div class="icon">➕</div>
-      <strong>Shërbime Emergjente</strong>
-      <p>Kujdes emergjent 24/7 me trajtim të menjëhershëm.</p>
-    </div>
-    <div class="service-item">
-      <div class="icon">🩺</div>
-      <strong>Shërbime Konsultative</strong>
-      <p>Këshilla mjekësore nga specialistë me përvojë.</p>
-    </div>
-    <div class="service-item">
-      <div class="icon">🧪</div>
-      <strong>Shërbime Ekzaminimi</strong>
-      <p>Kontrolle gjithëpërfshirëse për mirëqenie.</p>
-    </div>
-  </div>
-</section>
-
-<!-- NEWS + CONTACT -->
-<section class="news-contact">
+   <section class="news-contact">
+  <!-- News Card -->
   <article class="news-card">
     <div class="news-header">
       <i class="fas fa-newspaper"></i> Latest News
     </div>
     <div class="news-content">
-      <?php if ($latestNews): ?>
-        <time><?= date("F d, Y", strtotime($latestNews['created_at'])) ?></time>
-        <h4><?= htmlspecialchars($latestNews['title']) ?></h4>
-        <p><?= substr(strip_tags($latestNews['content']), 0, 120) ?>...</p>
-        <a href="news.php?id=<?= $latestNews['id'] ?>" class="btn-read">Read More</a>
-      <?php else: ?>
-        <p>No news available.</p>
-      <?php endif; ?>
+      <time datetime="2026-01-19">Janary 19, 2026</time>
+      <h4>Hapet Krahu i Ri Pediatrik</h4>
+      <p>Jemi të kënaqur të njoftojmë hapjen e krahut tonë të ri pediatrik, i krijuar për të ofruar kujdes të specializuar për fëmijët</p>
+      <a href="news.html#pediatric" class="btn-read">Read More</a>
     </div>
   </article>
 
+  <!-- Contact Card -->
   <aside class="contact-card">
     <div class="contact-header">
       <i class="fas fa-phone-alt"></i> Contact
@@ -157,45 +122,62 @@ $latestNews = $newsResult->fetch_assoc();
     <div class="contact-details">
       <p><strong>Phone:</strong> 044-123-456</p>
       <p><strong>Email:</strong> info@hospital.com</p>
-      <a href="contact.php" class="btn-contact">Send Message</a>
+      <a href="contact.html" class="btn-contact">Send Message</a>
     </div>
   </aside>
 </section>
 
-</main>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-container">
+    
+    <!-- Kolona per Kontakt -->
     <div class="footer-section">
       <h3>Contact Us</h3>
-      <p>Phone: 044-123-456</p>
-      <p>Email: info@hospital.com</p>
-      <p>Address: 123 Hospital St</p>
+      <p><i class="fas fa-phone"></i> Phone:044-123-456</p>
+      <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@hospital.com">info@hospital.com</a></p>
+      <p><i class="fas fa-map-marker-alt"></i> Address: 123 Hospital St, City, Country</p>
     </div>
+    
+    <!-- Kolona per Quick Links -->
     <div class="footer-section">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="About.php">About Us</a></li>
-        <li><a href="Services.php">Services</a></li>
-        <li><a href="News.php">News</a></li>
-        <li><a href="Contact.php">Contact</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
+    
+    <!-- Kolona per Logo dhe Social Media -->
     <div class="footer-section">
-      <h3>Follow Us</h3>
-      <div class="social-media">
-        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-      </div>
-    </div>
+  <h3>Follow Us</h3>
+  <div class="social-media">
+    <a href="https://www.facebook.com/" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
   </div>
+</div>
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  </div>
+
+
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </div>
+    
+
+  <!-- Footer Bottom -->
   <div class="footer-bottom">
     &copy; 2025 NovaHealth Hospital. All Rights Reserved.
   </div>
 </footer>
 
+
 <script src="Home.js"></script>
+
 </body>
 </html>

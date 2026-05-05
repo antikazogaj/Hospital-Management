@@ -2,7 +2,7 @@
 
 class User {
     private $conn; //Variabla qe ruan lidhjen  me bazen e te dhenave qe kalon me pas ne konstruktorin e klases
-    private $table_name = "user"; //Variabla qe tregon emrin e tabeles ne bazen e te dhenave ku do te ruhen te dhenat e users
+    private $table_name = "users"; //Variabla qe tregon emrin e tabeles ne bazen e te dhenave ku do te ruhen te dhenat e users
 
     //Pjesa e konstruktorit qe kryesisht merr lidhjen me bazen e te dhenave ku ka nje parameter db si argument dhe kryesisht e ruan variablen connection
     public function __construct($db) {

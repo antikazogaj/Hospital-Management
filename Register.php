@@ -6,7 +6,7 @@ include_once 'User.php';
 if($_SERVER['REQUEST_METHOD'] == 'POST') { //kontrollon qe kodet te ekzekutohet atehere kur perdoruesi e shtyp butonin e register
     $db = new Database(); //krijimi i nje instance te klases Database per te krijuar nje lidhje me bazen e te dhenave
     $connection = $db->getConnection();//merr lidhjen me bazen e te dhenave qe eshte krijuar nga objekti DB 
-    $user = new User(db: $connection); //krijimi i nje instance te klases User krijon lidhjen me bazen e te dhenave dhe njekohesisht i merr vlerat si nje argument i caktuar
+      $user = new User($connection); //krijimi i nje instance te klases User krijon lidhjen me bazen e te dhenave dhe njekohesisht i merr vlerat si nje argument i caktuar
 
     $name = $_POST['name']; //me metoden post kontrollhen atributet e regjistrimit 
     $email = $_POST['email'];
